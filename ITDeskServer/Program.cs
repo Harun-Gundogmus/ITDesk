@@ -34,9 +34,9 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
         ValidateAudience = true, //tokený kullanacak site yada kiþi bilgisi
         ValidateIssuerSigningKey = true, //tokenýn güvenlik anahtarý üretmesini saðlayan güvenlik sözcüðü
         ValidateLifetime = true, //tokenýn yaþam süresini kontrol etmek istiyor musun 
-        ValidIssuer = "Harun Gündoðmuþ",
-        ValidAudience = "IT Desk Angular App",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my secret key mey secret key 1234 ... my secret key mey secret key 1234 ... my secret key mey secret key 1234 ..."))
+        ValidIssuer = builder.Configuration.GetSection("Jwt:Issuer").Value,
+        ValidAudience = builder.Configuration.GetSection("Jwt:Audience").Value,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Jwt:SecretKey").Value ?? ""))
     };
 });
 #endregion

@@ -47,13 +47,9 @@
                         @for(detail of details; track detail){
                             <div class="pb-4" [ngClass]="auth.token.userId === detail.appUserId ? 'chat-message-right' : 'chat-message-left' ">
                                 <div class="ms-2 me-2">
-                                    @if(auth.token.userId !== detail.appUserId){
+
                                         <img src="https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                    }
-                                    @else{
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                    }
-                                    
+
                                     <div class="text-muted small text-nowrap mt-2">
                                         
                                     </div>

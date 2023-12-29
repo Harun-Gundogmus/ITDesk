@@ -1,4 +1,5 @@
 ﻿using ITDeskServer.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,6 +9,13 @@ namespace ITDeskServer.Services;
 
 public sealed class JwtService
 {
+    private readonly IConfiguration _configuration;
+
+    public JwtService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
     public string CreateToken(AppUser appUser, List<string?>? roles, bool rememberMe)
     {
         string token = string.Empty;
@@ -21,14 +29,13 @@ public sealed class JwtService
 
 
         DateTime expires = rememberMe ? DateTime.Now.AddMonths(1) : DateTime.Now.AddDays(1);
-
         JwtSecurityToken jwtSecurityToken = new(
-            issuer: "Harun Gündoğmuş",
-            audience: "IT Desk Angular App",
-            claims: null,
+            issuer: _configuration.GetSection("Jwt:Issuer").Value,
+            audience: _configuration.GetSection("Jwt:Audience").Value,
+            claims: claims,
             notBefore: DateTime.Now,
             expires: expires,
-            signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my secret key mey secret key 1234 ... my secret key mey secret key 1234 ... my secret key mey secret key 1234 ... my secret key mey secret key 1234 ...")), SecurityAlgorithms.HmacSha512));
+            signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("Jwt:SecretKey").Value ?? "")), SecurityAlgorithms.HmacSha512));
 
         JwtSecurityTokenHandler handler = new();
         token = handler.WriteToken(jwtSecurityToken);

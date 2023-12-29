@@ -143,3 +143,4 @@ C:\Angular\ITDesk\ITDeskServer\bin\Debug\net8.0\Microsoft.OData.Core.dll
 C:\Angular\ITDesk\ITDeskServer\bin\Debug\net8.0\Microsoft.OData.Edm.dll
 C:\Angular\ITDesk\ITDeskServer\bin\Debug\net8.0\Microsoft.OData.ModelBuilder.dll
 C:\Angular\ITDesk\ITDeskServer\bin\Debug\net8.0\Microsoft.Spatial.dll
+C:\Angular\ITDesk\ITDeskServer\obj\Debug\net8.0\ITDeskServer.sourcelink.json

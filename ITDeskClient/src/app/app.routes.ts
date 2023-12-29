@@ -1,7 +1,7 @@
-import { Routes } from '@angular/router';
+import { DefaultExport, Routes } from '@angular/router';
 import { LayoutsComponent } from './components/layouts/layouts.component';
 import { AuthService } from './services/auth.service';
-import { inject } from '@angular/core';
+import { Type, inject } from '@angular/core';
 
 export const routes: Routes = [
     {
@@ -16,6 +16,10 @@ export const routes: Routes = [
             {
                 path: "",
                 loadComponent: ()=> import("./components/home/home.component")
+            },
+            {
+                path: "ticket-details/:value",
+                loadComponent: ()=> import("./components/detail/detail.component")
             }
         ]
     }

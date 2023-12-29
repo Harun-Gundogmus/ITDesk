@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.css'
 })
-export class DetailComponent {
+export default class DetailComponent {
   details: TicketDetailModel[] = [];
   content: string = "";
   ticketId: string = "";
@@ -60,7 +60,7 @@ export class DetailComponent {
   }
 
   closeTicket(){
-    this.http.get(`Tickets/CloseTicketById?ticketId=${this.ticket.id}`,()=>{
+    this.http.get(`Tickets/CloseTicketByTicketId?ticketId=${this.ticket.id}`,()=>{
       this.getTicket();
     });
   }

@@ -25,11 +25,11 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './home.component.css'
 })
 export default class HomeComponent implements OnInit{
+    frameworkComponents: any;
     tickets: TicketModel[] = [];
     ref: DynamicDialogRef | undefined;
     selectedSubject!: any;
     isAdmin: boolean = false;
-    frameworkComponents: any;
 
     defaultColDef: any = {
         filter: true,
@@ -48,7 +48,7 @@ export default class HomeComponent implements OnInit{
             headerName: "Detay", 
             width: '40px',
             filter: false,
-            cellRenderer: "buttonRenderer",
+            cellRenderer: "ButtonRenderer",
             cellRendererParams: {
                 onClick: this.goToDetail.bind(this),
                 label: 'Go To Detail'
@@ -104,7 +104,6 @@ export default class HomeComponent implements OnInit{
         const data = {
             roles: this.auth.token.roles
         }
-        console.log(data);
         this.http.post("Tickets/GetAll",data,(res)=> {
             this.tickets = [];
 
@@ -132,7 +131,7 @@ export default class HomeComponent implements OnInit{
         });
 
         this.ref.onClose.subscribe((data:any) => {
-            console.log(data);
+            
             if (data) {
                 this.http.post("Tickets/Add",data,(res)=>{
                     this.getAll();

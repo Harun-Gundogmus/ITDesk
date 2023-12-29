@@ -26,7 +26,6 @@ export class HttpService {
             },
             error: (err: HttpErrorResponse)=>{
                 this.error.errorHandler(err);
-                console.log(this.auth.tokenString);
             }
         })
   }
@@ -34,7 +33,8 @@ export class HttpService {
   post(api:string, data:any, callBack:(res: any)=>void){
     this.http.post(`https://localhost:7137/api/${api}`,data,{
             headers:{
-                "Authorization": "Bearer " + this.auth.tokenString            }
+                "Authorization": "Bearer " + this.auth.tokenString            
+              }
         })
         .subscribe({
             next: (res: any)=>{

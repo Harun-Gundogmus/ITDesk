@@ -28,12 +28,12 @@ export class AuthService {
     this.token.name = decode?.Name;
     this.token.userName = decode?.UserName;
     this.token.userId = decode?.UserId;
-    this.token.exp = decode?.Exp;
+    this.token.exp = decode?.exp;
     this.token.roles = decode?.Roles;
 
 
 
-    const now = new Date().getTime() * 1000
+    const now = new Date().getTime() / 1000
     if (this.token.exp < now) {
       return this.redirectToLogin();
     }
